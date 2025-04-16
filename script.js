@@ -98,32 +98,24 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage("Pensando...", 'bot');
 
             try {
-                const response = await fetch(
-                    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1",
-                    {
-                        method: "POST",
-                        headers: {
-                            Authorization: HUGGINGFACE_TOKEN,
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            inputs: fullPrompt,
-                            parameters: {
-                                max_new_tokens: 300,
-                                temperature: 0.7
-                            }
-                        })
-                    }
-                );
-
+                const response = await fetch("https://chatbot-worker.pablolegerensomolinos.workers.dev", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+            
                 const data = await response.json();
                 chatMessages.lastChild.remove(); // quitar "Pensando..."
-                const reply = data[0]?.generated_text || "Lo siento, no pude generar una respuesta.";
+                const reply = data.reply || "Lo siento, no pude generar una respuesta.";
                 addMessage(reply, 'bot');
+            
             } catch (error) {
                 chatMessages.lastChild.remove(); // quitar "Pensando..."
-                addMessage("Ocurrió un error al contactar con el modelo.", 'bot');
+                addMessage("Ocurrió un error al contactar con el asistente.", 'bot');
             }
+            
         }
     });
 
