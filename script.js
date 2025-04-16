@@ -92,9 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (message) {
             addMessage(message, 'user');
             messageInput.value = '';
-
-            // Llamar al modelo Hugging Face
-            const fullPrompt = `${contexto}\n\nPregunta: ${message}\nRespuesta:`;
             addMessage("Pensando...", 'bot');
 
             try {
@@ -114,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (error) {
                 chatMessages.lastChild.remove(); // quitar "Pensando..."
                 addMessage("Ocurrió un error al contactar con el asistente.", 'bot');
+                console.error("Error:", error);
             }
             
         }
