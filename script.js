@@ -67,10 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
     const notification = chatToggle.querySelector('.notification');
 
-    const HUGGINGFACE_TOKEN = HF_TOKEN;
-
-    const contexto = CV_CONTEXT;
-
     setTimeout(() => {
         notification.style.display = 'block';
     }, 3000);
@@ -106,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 chatMessages.lastChild.remove(); // quitar "Pensando..."
                 const reply = data.reply || "Lo siento, no pude generar una respuesta.";
+
                 addMessage(reply, 'bot');
             
             } catch (error) {
