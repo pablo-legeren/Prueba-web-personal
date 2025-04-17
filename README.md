@@ -6,7 +6,7 @@ Welcome to my personal portfolio! This repository hosts my professional website,
 
 👉 [pablo-legeren.github.io/portfolio](https://pablo-legeren.github.io/portfolio)
 
-## 🖼️ Preview
+## Preview
 
 <p align="center">
   <img src="preview.png" alt="Portfolio preview" width="700"/>
